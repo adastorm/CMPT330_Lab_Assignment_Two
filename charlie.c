@@ -11,22 +11,28 @@ void *print_hello_world(void *tid)
 
 int main(int argc, const char *argv[])
 {
+    //First check is there are enogh command line arguments 
     if (argc != 6){
         printf("Fail\n");
         exit(EXIT_FAILURE);
     }
 
-    int NumOmpaLoopmpas = argv[1];
-    int NumChildren     = argv[2];
-    int conveyorSize    = argv[3];
-    int candiesPerBox   = argv[4];
-    int candiesPerOompa = argv[5];
+    // Take in teh command line arguments
+    int NumOmpaLoopmpas = atoi(argv[1]);
+    int NumChildren     = atoi(argv[2]);
+    int conveyorSize    = atoi(argv[3]);
+    int candiesPerBox   = atoi(argv[4]);
+    int candiesPerOompa = atoi(argv[5]);
 
+    printf("Loompas: %d Children: %d  Conveyor: %d BoxSize: %d Candies per LOompa: %d\n", NumOmpaLoopmpas, NumChildren, conveyorSize, candiesPerBox, candiesPerOompa);
+
+    //Create arrays for the threads
     pthread_t oompaLoompas[NumOmpaLoopmpas];
     pthread_t children[NumChildren];
 
     int status, i;
 
+    //Generate child threads
     for (i = 0; i < NumChildren; i++)
     {
         printf("[ MAIN ]      \t: Creating %d\n", i);
@@ -37,6 +43,8 @@ int main(int argc, const char *argv[])
             exit(EXIT_FAILURE);
         }
     }
+
+    //Generate Oompa loompa threads
     for (i = 0; i < NumOmpaLoopmpas; i++)
     {
         printf("[ MAIN ]      \t: Creating %d\n", i);
