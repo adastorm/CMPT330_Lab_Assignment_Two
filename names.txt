@@ -1,26 +1,26 @@
-Amazing Apple
-Bonkers Banana
-Crazy Caramel
-Delightful Doughnut
-Extravagant 
-Fairlygood Fudge
-Great Grape
-Healing Honeydow
-Intreaguing 
-Jumping Jelly-Beans
-Killer Kitkats
-Long Limes
-Massive Mango
-Normal Nuts
-Obsolete Orange
-Purple Pear
-Quaint Quart
-Red Raspberry
-Small Strawberry
-Tall Teal
-Underwhealming
-Verygood Veal
-Wierd Worms
-Xtreme Xzylaphone
-Yellow Yellow
-Zealed Zebra
+a[0]="Amazing Apple";
+a[1]="Bonkers Banana";
+a[2]="Crazy Caramel";
+a[3]="Delightful Doughnut";
+a[4]="Extravagant";
+a[5]="Fairlygood Fudge";
+a[6]="Great Grape";
+a[7]="Healing Honeydow";
+a[8]="Intreaguing";
+a[9]="Jumping Jelly-Beans";
+a[10]="Killer Kitkats";
+a[11]="Long Limes";
+a[12]="Massive Mango";
+a[13]="Normal Nuts";
+a[14]="Obsolete Orange";
+a[15]="Purple Pear";
+a[16]="Quaint Quart";
+a[17]="Red Raspberry";
+a[18]="Small Strawberry";
+a[19]="Tall Teal";
+a[20]="Underwhealming";
+a[21]="Verygood Veal";
+a[22]="Wierd Worms";
+a[23]="Xtreme Xzylaphone";
+a[24]="Yellow Yellow";
+a[25]="Zealed Zebra";

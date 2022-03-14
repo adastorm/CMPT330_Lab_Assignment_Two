@@ -1,28 +1,64 @@
-#include <pthread.h>
-#include <stdlib.h>
-#include <stdio.h>
+#include "ChocolateFactory.h"
 
-void *print_hello_world(void *tid)
-{
-    printf("[ THREAD %d ]\t: Hello World!\n", (int)(long)tid);
-    pthread_exit(NULL);
-    return NULL;
+
+//Initialize the variables needed for teh command line arguments
+int NumOmpaLoopmpas;
+int NumChildren;
+int conveyorSize;
+int candiesPerBox;
+int candiesPerOompa;
+
+//Keep Track of Candies in conveyor
+int candiesInConveyor;
+int oompaPosition;
+int childPosition;
+struct candy *list;
+
+void createConveyor(){
+    //initialize the data and the array
+    candiesInConveyor = 0;
+    oompaPosition = 0;
+    childPosition = 0;
+    list = malloc(conveyorSize*sizeof(*list));
+}
+int addToConveyor(struct candy input){
+    if(conveyorSize = candiesInConveyor)
+        return 0;
+    else{
+        list[oompaPosition] = input;
+        oompaPosition++;
+        if (oompaPosition >= conveyorSize)
+            oompaPosition = 0;
+    }
 }
 
+struct candy removeFromConveyor(){
+    //If there is candy to be removed, remove the candy
+    //Decriment the amount of candies
+    //Return the cnady
+}
+
+
+
+//The main Thread
 int main(int argc, const char *argv[])
 {
-    //First check is there are enogh command line arguments 
+    
+    // First check is there are enogh command line arguments
     if (argc != 6){
         printf("Fail\n");
         exit(EXIT_FAILURE);
     }
 
-    // Take in teh command line arguments
-    int NumOmpaLoopmpas = atoi(argv[1]);
-    int NumChildren     = atoi(argv[2]);
-    int conveyorSize    = atoi(argv[3]);
-    int candiesPerBox   = atoi(argv[4]);
-    int candiesPerOompa = atoi(argv[5]);
+    // Take in the command line arguments
+    NumOmpaLoopmpas = atoi(argv[1]);
+    NumChildren     = atoi(argv[2]);
+    conveyorSize    = atoi(argv[3]);
+    candiesPerBox   = atoi(argv[4]);
+    candiesPerOompa = atoi(argv[5]);
+
+    //Create circular queue
+    int conveyorBelt[conveyorSize];
 
     printf("Loompas: %d Children: %d  Conveyor: %d BoxSize: %d Candies per LOompa: %d\n", NumOmpaLoopmpas, NumChildren, conveyorSize, candiesPerBox, candiesPerOompa);
 
@@ -35,8 +71,8 @@ int main(int argc, const char *argv[])
     //Generate child threads
     for (i = 0; i < NumChildren; i++)
     {
-        printf("[ MAIN ]      \t: Creating %d\n", i);
-        status = pthread_create(&children[i], NULL, print_hello_world, (void *)(long)i);
+        printf("[ MAIN ]      \t: Creating Child %d\n", i);
+        status = pthread_create(&children[i], NULL, child_thread, (void *)(long)i);
         if (status != 0)
         {
             printf("Oops, pthread_create returned error code %d\n", status);
@@ -47,8 +83,8 @@ int main(int argc, const char *argv[])
     //Generate Oompa loompa threads
     for (i = 0; i < NumOmpaLoopmpas; i++)
     {
-        printf("[ MAIN ]      \t: Creating %d\n", i);
-        status = pthread_create(&oompaLoompas[i], NULL, print_hello_world, (void *)(long)i);
+        printf("[ MAIN ]      \t: Creating Oompa%d\n", i);
+        status = pthread_create(&oompaLoompas[i], NULL, oompa_loompa_thread, (void *)(long)i);
         if (status != 0)
         {
             printf("Oops, pthread_create returned error code %d\n", status);
