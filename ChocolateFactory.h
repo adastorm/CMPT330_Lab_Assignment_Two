@@ -1,3 +1,9 @@
+/*
+Jonah Watts
+2002006
+CMPT330
+*/
+
 #ifndef HEADER_FILE
 #define HEADER_FILE
 
@@ -12,6 +18,9 @@ extern int NumChildren;
 extern int conveyorSize;
 extern int candiesPerOompa;
 extern int candiesPerBox;
+extern int candiesInConveyor;
+extern int oompaPosition;
+extern int childPosition;
 
 //Create an array of all the different colors
 
@@ -46,7 +55,7 @@ static const char* colors[26][90] = {
 
 //Structure for the Candy
 struct candy{
-    int index;
+    int flavor;
     int loop;
     int number;
 };
@@ -58,11 +67,14 @@ struct candy{
 void *oompa_loompa_thread(void *);
 void *child_thread(void *);
 
+//Global Functions
+int addToConveyor(struct candy);
 
 // Global Variables
 extern int isDoneProduction;
+extern struct candy *list;
 
 //Create the mutex lock
 extern pthread_mutex_t lock;
-
+extern pthread_cond_t condO, condC;
 #endif
